@@ -1,7 +1,11 @@
-# Preferred.pictures Ruby Client Library
+# PreferredPictures Ruby Client Library
 
-The [Preferred.pictures](https://preferred.pictures) PHP library provides a convenient way to call the
-[Preferred.pictures](https://preferred.pictures) API for applications written in Ruby
+The [PreferredPictures](https://preferred.pictures) PHP library provides a convenient way to call the
+[PreferredPictures](https://preferred.pictures) API for applications written in Ruby
+
+[View the full documentation about the PreferredPicture's API](https://docs.preferred.pictures/api-sdks/api)
+
+[Learn more about what PreferredPictures can do.](https://docs.preferred.pictures/)
 
 ## Installation
 
@@ -20,31 +24,32 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+require "preferredpictures"
 
 # Create a new client using an issued identity
 # and a secret key
-client = PreferredPictures::Client.new("testidentity", "secret123456")
+client = PreferredPictures::Client.new(
+    identity: "testidentity",
+    secret_key: "secret123456")
 
 # A simple example with just choices and the a tournament.
 url = client.createChooseUrl(
-    ['https://example.com/image-red.jpg',
-    'https://example.com/image-green.jpg',
-    'https://example.com/image-blue.jpg'],
-    'test-tournament')
+    choices: ['https://example.com/image-red.jpg',
+              'https://example.com/image-green.jpg',
+              'https://example.com/image-blue.jpg'],
+    tournament: 'test-tournament')
 
-# A more involved example setting the ttl's and using
-# a prefix and suffix applied to the choices for brevity
+# A more involved example setting a prefix and suffix
+# applied to the choices for brevity
 url = client.createChooseUrl(
-    ['red', 'green', 'blue'],
-    'test-tournament',
-    600,
-    3600,
-    "https://example.com/image-",
-    ".jpg")
+    choices: ['red', 'green', 'blue'],
+    tournament: 'test-tournament',
+    choices_prefix: "https://example.com/image-",
+    choices_suffix: ".jpg")
 
 # The url returned will appear to be something like:
 #
-# https://api.preferred.pictures/choose-url?choices=red%2Cgreen%2Cblue&tournament=testing&expiration=[EXPIRATION]&uid=[UNIQUEID]&ttl=600&prefix=https%3A%2F%2Fexample.com%2Fjacket-&suffix=.jpg&identity=test-identity&signature=[SIGNATURE]
+# https://api.preferred-pictures.com/choose-url?choices=red%2Cgreen%2Cblue&tournament=testing&expiration=[EXPIRATION]&uid=[UNIQUEID]&ttl=600&prefix=https%3A%2F%2Fexample.com%2Fjacket-&suffix=.jpg&identity=test-identity&signature=[SIGNATURE]
 #
 # which should be placed where it is needed in your application or templates.
 ```

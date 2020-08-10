@@ -6,12 +6,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Preferred Pictures"]
   spec.email         = ["contact@preferred.pictures"]
 
-  spec.summary       = %q{Preferred.pictures Ruby client library}
-  spec.description   = %q{The Preferred.pictures Ruby client library provides a convenient way to call the Preferred.pictures API for applications written in Ruby.}
+  spec.summary       = %q{PreferredPictures Ruby client library}
+  spec.description   = %q{The PreferredPictures Ruby client library provides a convenient way to call the PreferredPictures API for applications written in Ruby.}
   spec.homepage      = "https://github.com/preferred-pictures/ruby"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
-
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/preferred-pictures/ruby.git"
@@ -24,4 +23,6 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "rspec", "~> 3.2"
 end
